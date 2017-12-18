@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Scenes/machine.tscn" type="PackedScene" id=1]
+
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 13 )
+
+[node name="Sprite" instance=ExtResource( 1 )]
+
+countdownMax = 500
+sense = "sound"
+
+[node name="CollisionShape2D" parent="collisionSpace"]
+
+transform/pos = Vector2( 0, -1.90735e-06 )
+transform/scale = Vector2( 1, 2.46154 )
+shape = SubResource( 1 )
+
+[node name="ProgressBar" parent="."]
+
+margin/left = -32.0
+margin/top = -32.0
+margin/right = 32.0
+margin/bottom = 0.0
+
+[connection signal="area_enter" from="collisionSpace" to="." method="_on_collisionSpace_area_enter"]
+
+[connection signal="body_enter" from="collisionSpace" to="." method="_on_collisionSpace_body_enter"]
+
+[connection signal="body_exit" from="collisionSpace" to="." method="_on_collisionSpace_body_exit"]
+
+
